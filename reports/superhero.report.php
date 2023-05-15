@@ -14,10 +14,17 @@ try {
     $datos = $superhero->listarSuperHeroes($_GET['publisher_id']);
     $titulo = $_GET['titulo'];
 
+    $data = $superhero->listarFiltrados(
+        $_GET['race_id'],
+        $_GET['gender_id'],
+        $_GET['bando_id']);
+    $title = $_GET['title'];
+
     ob_start();
 
     include './estilos.report.html';
     include './superhero.data.php';
+    include './Filtrado.data.php';
 
   
  

@@ -163,6 +163,7 @@
         })
         .then(response => response.json())
         .then(datos => {
+          console.log(datos);
           datos.forEach(element => {
             const row = `
             <tr>
@@ -179,6 +180,9 @@
           });
         });
       }
+
+
+      
 
 
       //Eventos
