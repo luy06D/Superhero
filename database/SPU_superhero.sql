@@ -35,10 +35,40 @@ BEGIN
 	ORDER BY superhero.`id`;
 END $$
 
-CALL spu_superhero_list(2);
+CALL spu_superhero_list(4);
+
+
+DELIMITER $$
+CREATE PROCEDURE spu_mostrar_filtrado
+(
+IN _race_id 	INT,
+IN _gender_id 	INT,
+IN _bando_id 	INT
+)
+
+BEGIN
+		SELECT
+	superhero.`id`, superhero.`superhero_name`,
+	c2.`colour`	'hair_colour',
+	publisher.`publisher_name`,
+	superhero.`weight_kg`
+		
+	FROM superhero
+	INNER JOIN gender ON gender.`id` = superhero.`gender_id`
+	INNER JOIN colour c2 ON c2.`id` = superhero.`hair_colour_id`
+	LEFT JOIN race ON race.`id` = superhero.`race_id`
+	LEFT JOIN publisher ON publisher.`id` = superhero.`publisher_id` 
+	LEFT JOIN alignment ON alignment.`id` = superhero.`alignment_id`
+	WHERE race.`id` = _race_id AND gender.`id` = _gender_id AND alignment.`id` = _bando_id;
+END $$
+
+CALL spu_mostrar_filtrado(3 , 2 ,2);
 
 
 
+SELECT * FROM race;
+SELECT * FROM gender;
+SELECT * FROM alignment;
 
 DELIMITER $$
 CREATE PROCEDURE spu_mostrar_superhero()
@@ -50,6 +80,8 @@ FROM  publisher;
 END $$
 
 CALL spu_mostrar_superhero;
+
+
 
 
 

@@ -62,12 +62,9 @@
             <tr>
               <th>ID</th>
               <th>Nombre</th>
-              <th>Nombre completo</th>
-              <th>Género</th>
-              <th>Color piel</th>
-              <th>Raza</th>
-              <th>Bando</th>
-              <th>Altura</th>
+              <th>Color de Cabello</th>
+              <th>Editor</th>
+              <th>Peso</th>
             </tr>
           </thead>
           <tbody>
@@ -86,6 +83,9 @@
       const lsRace = document.querySelector("#raza");
       const lsGender = document.querySelector("#genero");
       const lsAlignment = document.querySelector("#bando");
+      const tablaHero = document.querySelector("#tabla-hero");
+      const cuerpoTabla = tablaHero.querySelector("tbody"); 
+
 
       //Métodos
       function mostrarRace(){
@@ -150,17 +150,43 @@
         });
       }
 
-  
+      function mostrarFiltrado(){
+        const parametros = new URLSearchParams();
+        parametros.append("operacion", "listarFiltrado");
+        parametros.append("race_id", parseInt(lsRace.value));
+        parametros.append("gender_id", parseInt(lsGender.value));
+        parametros.append("bando_id", parseInt(lsAlignment.value));
 
+        fetch('../controller/superHeroe.controller.php',{
+          method: 'POST',
+          body: parametros
+        })
+        .then(response => response.json())
+        .then(datos => {
+          datos.forEach(element => {
+            const row = `
+            <tr>
+              <td>${element.id}</td>
+              <td>${element.superhero_name}</td>
+              <td>${element.hair_colour}</td>
+              <td>${element.publisher_name}</td>
+              <td>${element.weight_kg}</td>            
+            </tr>
+            
+            `;
 
-
+            cuerpoTabla.innerHTML += row;
+          });
+        });
+      }
 
 
       //Eventos
       mostrarRace();
       mostrarGender();
       mostrarBando();
-
+      lsAlignment.addEventListener("change", mostrarFiltrado);
+  
     }); 
   </script>
 

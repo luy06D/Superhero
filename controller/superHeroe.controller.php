@@ -12,4 +12,20 @@ if(isset($_POST['operacion'])){
       echo json_encode($datos);
     }
   }
+
+  
+  if($_POST['operacion'] == 'listarFiltrado'){
+    $datos = $superheroe->listarFiltrado(
+      $_POST['race_id'],
+      $_POST['gender_id'],
+      $_POST['bando_id'],);
+    if($datos){
+      echo json_encode($datos);
+    }
+  }
+
+
+
+ 
+
 }
