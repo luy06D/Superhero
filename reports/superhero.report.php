@@ -11,7 +11,8 @@ try {
 
     //Instanciamos la clase SuperHero
     $superhero = new SuperHeroe();
-    $datos = $superhero->listarSuperHeroes(3);
+    $datos = $superhero->listarSuperHeroes($_GET['publisher_id']);
+    $titulo = $_GET['titulo'];
 
     ob_start();
 

@@ -2,7 +2,7 @@ USE superhero;
 
 SELECT * FROM superhero;  -- 750
 SELECT * FROM gender; 
-SELECT * FROM race; 
+SELECT * FROM publisher; 
 
 
 DELIMITER $$
@@ -11,7 +11,9 @@ BEGIN
 	SELECT
 	superhero.`id`, superhero.`superhero_name`, superhero.`full_name`,
 	gender.`gender`,
-	c1.`colour`, c2.`colour`,c3.`colour`,
+	c1.`colour` 'eye_colour',
+	c2.`colour`	'hair_colour',
+	c3.`colour` 'skin_colour',
 	race.`race`,
 	publisher.`publisher_name`,
 	alignment.`alignment`,
@@ -34,6 +36,21 @@ BEGIN
 END $$
 
 CALL spu_superhero_list(2);
+
+
+
+
+DELIMITER $$
+CREATE PROCEDURE spu_mostrar_superhero()
+BEGIN
+
+SELECT *
+FROM  publisher;
+
+END $$
+
+CALL spu_mostrar_superhero;
+
 
 
 	

@@ -25,7 +25,8 @@
               </div>
               <div class="col-md-2">
                 <div class="d-grid">
-                  <button id="exportar" class="btn btn-info mt-2"> Generar reporte</button>
+                  <button id="exportar" class="btn btn-info mt-2">
+                     Generar reporte</button>
                 </div>
               </div>
             </div>
@@ -61,6 +62,8 @@
   <script>
     document.addEventListener("DOMContentLoaded", () => {
 
+      //Objetos
+      const btnReporte = document.querySelector("#exportar")
       const lsPublisher = document.querySelector("#publishers");
       const tablaHero = document.querySelector("#tabla-hero");
       const cuerpoTabla = tablaHero.querySelector("tbody"); 
@@ -124,12 +127,20 @@
           
           }
 
-
+          
+          function generarPDF(){
+            const parametros = new URLSearchParams();
+            parametros.append("publisher_id", parseInt(lsPublisher.value));
+            parametros.append("titulo", lsPublisher.options[lsPublisher.selectedIndex].text);
+            window.open(`./reports/superhero.report.php?${parametros}`, `_blank`);
+          }
 
 
           //Eventos
           mostrarPublisher();
           lsPublisher.addEventListener("change", obtenerSuperhero);
+          btnReporte.addEventListener("click", generarPDF);
+
     });
   </script>
   
