@@ -17,9 +17,19 @@
             Filtra tus super héroes
           </div>
           <div class="card-body">
-            <select name="" id="publishers" class="form-select">
-              <option value="">Selección</option>
-            </select>
+            <div class="row">
+              <div class="col-md-10 mt-2">
+                <select name="" id="publishers" class="form-select">
+                  <option value="">Selección</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <div class="d-grid">
+                  <button id="exportar" class="btn btn-info mt-2"> Generar reporte</button>
+                </div>
+              </div>
+            </div>
+            
           </div>
         </div>
       </div>
@@ -106,7 +116,7 @@
                   cuerpoTabla.innerHTML += fila;
                
                   
-                })
+                });
                   
               });
               
