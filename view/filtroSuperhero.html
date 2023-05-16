@@ -23,14 +23,21 @@
     .link a{
       
       color: rgb(123, 126, 126);
-      
     }
+
+    .cl{
+      border-color: #48C9B0;
+    }
+    hr{
+      border-color: #329984;
+    }
+
 
   </style>
 
   <div class="container ">
     <div class="mt-5 mb-4 ">
-      <div class="card row justify-content-center">
+      <div class="card row justify-content-center cl">
         <div class="card-header text-center title" >
           Filtra tus super héroes
         </div>
@@ -133,7 +140,7 @@
   </div>
 
 
-  
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <script>
 
@@ -243,7 +250,10 @@
         })
         .catch(error =>{
           cuerpoTabla.innerHTML = ``;
-          alert('No se encontraron datos')
+          Swal.fire({
+            icon: 'error',
+            title: 'Los datos filtrados no se encuentran',
+          })
         });
       }
 
