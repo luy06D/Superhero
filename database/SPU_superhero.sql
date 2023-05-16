@@ -81,6 +81,21 @@ END $$
 
 CALL spu_mostrar_superhero;
 
+DELIMITER $$
+CREATE PROCEDURE spu_superhero_alignment_resume()
+BEGIN
+
+SELECT 
+		CASE
+			WHEN alignment.`alignment` IS NULL THEN 'Ninguno'
+			WHEN alignment.`alignment` IS NOT NULL THEN alignment.`alignment`
+		END 'alignment',
+			COUNT(superhero.`id`) 'total'
+	FROM superhero
+	LEFT JOIN alignment ON alignment.`id` = superhero.`alignment_id`
+	GROUP BY alignment.`alignment`;
+END $$
+
 
 
 

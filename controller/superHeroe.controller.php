@@ -24,6 +24,11 @@ if(isset($_POST['operacion'])){
     }
   }
 
+  if($_POST['operacion'] == 'resumenBandos'){
+    $datos = $superheroe->getBandoResume();
+    echo json_encode($datos);
+  }
+
 
 
  
