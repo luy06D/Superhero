@@ -44,7 +44,7 @@
               </div>
               <div class="col-5 col-md-5 col-lg-5 mt-3">
                 <div class="d-grid">
-                  <button id="exportar" class="btn btn-secondary mt-2" >
+                  <button id="exportarPdf" class="btn btn-secondary mt-2" >
                      Generar reporte</button>
                 </div>
               </div>
@@ -85,6 +85,7 @@
       const lsAlignment = document.querySelector("#bando");
       const tablaHero = document.querySelector("#tabla-hero");
       const cuerpoTabla = tablaHero.querySelector("tbody"); 
+      const btnReportePDF = document.querySelector("#exportarPdf");
 
 
       //Métodos
@@ -181,7 +182,16 @@
         });
       }
 
-
+      function generarPdf(){
+        const parametros = new URLSearchParams();
+        parametros.append("race_id", parseInt(lsRace.value));
+        parametros.append("gender_id", parseInt(lsGender.value));
+        parametros.append("bando_id", parseInt(lsAlignment.value));
+        parametros.append("title", lsRace.options[lsRace.selectedIndex].text);
+        parametros.append("title2", lsGender.options[lsGender.selectedIndex].text);
+        parametros.append("title3", lsAlignment.options[lsAlignment.selectedIndex].text);
+        window.open(`../reports/filtrado.report.php?${parametros}`, `_blank`);
+      }
       
 
 
@@ -190,6 +200,9 @@
       mostrarGender();
       mostrarBando();
       lsAlignment.addEventListener("change", mostrarFiltrado);
+      lsRace.addEventListener("change", mostrarFiltrado);
+      lsGender.addEventListener("change", mostrarFiltrado);
+      btnReportePDF.addEventListener("click", generarPdf);
   
     }); 
   </script>

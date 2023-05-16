@@ -9,21 +9,16 @@ use Spipu\Html2Pdf\Exception\ExceptionFormatter;
 
 try {
 
-    //Archivo que conponen el PDF
-    $superhero = new SuperHeroe();
-
-
-    $datos = $superhero->listarSuperHeroes($_GET['publisher_id']);
-    $titulo = $_GET['titulo'];
-
-
+  $superHero = new SuperHeroe();
+  $data = $superHero->listarFiltrado($_GET['race_id'], $_GET['gender_id'],$_GET['bando_id']);
+  $title = $_GET['title'];
+  $title2 = $_GET['title2'];
+  $title3 = $_GET['title3'];
+  
 
     ob_start();
-
-
     include './estilos.report.html';
-    include './superhero.data.php';
-
+    include './Filtrado.data.php';
     $content = ob_get_clean();
 
     $html2pdf = new Html2Pdf('P', 'A4', 'fr');

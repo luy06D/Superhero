@@ -62,7 +62,7 @@ BEGIN
 	WHERE race.`id` = _race_id AND gender.`id` = _gender_id AND alignment.`id` = _bando_id;
 END $$
 
-CALL spu_mostrar_filtrado(3 , 2 ,2);
+CALL spu_mostrar_filtrado(1, 2 ,1);
 
 
 

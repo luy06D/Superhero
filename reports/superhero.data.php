@@ -26,17 +26,17 @@
 
   <?php foreach($datos as $registro): ?>
     <tr>
+      
       <td><?=$registro['id']?></td>
       <td><?=$registro['superhero_name']?></td>
       <td><?=$registro['gender']?></td>
       <td><?=$registro['race']?></td>
       <td><?=$registro['alignment']?></td>
       <td><?=$registro['height_cm']?></td>
-  
       
     </tr>
   
-  <?php endforeach; ?>
+  <?php endforeach;?>
 
   </tbody>
 </table>

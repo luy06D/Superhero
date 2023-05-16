@@ -1,4 +1,4 @@
-<h1 class="text-center text-md"><?=$titulo?></h1>
+<h1 class="text-center text-md"><?=$title?> - <?=$title2?> - <?=$title3?></h1>
 
 <table class="table table-border mt-5">
   <colgroup>
@@ -13,9 +13,9 @@
     <tr>
       <th>ID</th>
       <th>Nombre</th>
-      <th>Color de pelo</th>
+      <th>Color de Cabello</th>
       <th>Editor</th>
-      <th>Bando</th>
+      <th>Peso</th>
     </tr>
 
   </thead>
@@ -23,14 +23,16 @@
 
   <?php foreach($data as $registro): ?>
     <tr>
+      
       <td><?=$registro['id']?></td>
       <td><?=$registro['superhero_name']?></td>
       <td><?=$registro['hair_colour']?></td>
       <td><?=$registro['publisher_name']?></td>
-      <td><?=$registro['weigth_kg']?></td>  
+      <td><?=$registro['weight_kg']?></td>
+      
     </tr>
   
-  <?php endforeach; ?>
+  <?php endforeach;?>
 
   </tbody>
 </table>
