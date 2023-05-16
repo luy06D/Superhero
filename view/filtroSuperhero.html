@@ -8,72 +8,132 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
 </head>
 <body>
-  <div class="container text-center">
-    <!-- Formulario filtro -->
-    <div class="row mt-5 mb-4 ">
-      <div class="col-md-12">
-        <div class="card">
-          <div class="card-header bg-info text-center">
-            Filtra tus super héroes
-          </div>
-          <div class="card-body">
+  <style>
+    .title{
+      background-color:#48C9B0 ;
+      font-size: 1.5em;
+      font-weight: bold;
+      color: white;
+    }
+    .btn{
+      border-radius: 12px;
+      background-color: #48C9B0;
+      color: white;
+    }
+    .link a{
+      
+      color: rgb(123, 126, 126);
+      
+    }
+
+  </style>
+
+  <div class="container ">
+    <div class="mt-5 mb-4 ">
+      <div class="card row justify-content-center">
+        <div class="card-header text-center title" >
+          Filtra tus super héroes
+        </div>
+        <div class="card-body">
+
+          <div class="container mt-4">
             <div class="row">
-              <div class="container">
-                <div class="col-md-10 mt-2 form-floating">
-                  <select name="" id="raza" class="form-select">
-                    <option value="">Selección</option>
-                  </select>
-                  <label for="">Raza</label>
+
+              <div class="col">
+                <div class="card text-center shadow">
+                  <div class="card-header">
+                    <p class="mb-1">Raza</p>
+                    <div class="row justify-content-center">                       
+                        <select name="" id="raza" class="form-select">
+                          <option value="">Selección</option>
+                        </select>                     
+                  </div> 
+                  </div>
                 </div>
               </div>
-              <div class="container">
-                <div class="col-md-10 mt-2 form-floating">
-                  <select name="" id="genero" class="form-select">
-                    <option value="">Selección</option>
-                  </select>
-                  <label for="">Género</label>
-                </div>
-              </div>            
-              <div class="container">
-                <div class="col-md-10 mt-2 form-floating">
-                  <select name="" id="bando" class="form-select">
-                    <option value="">Selección</option>
-                  </select>
-                  <label for="">Bando</label>
+
+              <div class="col">
+                <div class="card text-center shadow">
+                  <div class="card-header">
+                    <p class="mb-1">Género</p>                  
+                        <div class="row justify-content-center">
+                          <select name="" id="genero" class="form-select">
+                            <option value="">Selección</option>
+                          </select>
+                        </div>                       
+                  </div>
                 </div>
               </div>
-              <div class="col-5 col-md-5 col-lg-5 mt-3">
-                <div class="d-grid">
-                  <button id="exportarPdf" class="btn btn-secondary mt-2" >
-                     Generar reporte</button>
+
+              <div class="col">
+                <div class="card text-center shadow">
+                  <div class="card-header">
+                    <p class="mb-1">Bando</p>
+                    <div class="row justify-content-center">                
+                      <select name="" id="bando" class="form-select">
+                        <option value="">Selección</option>
+                      </select>              
+                  </div>
+                  </div>                      
+                    </div>
                 </div>
+              </div>
+
+            </div>
+
+          </div>
+
+            <div class="d-grid gap-2 col-6 mx-auto ">
+              <div class="d-grid">
+                <button id="btnFiltrar" class="btn btn-light mt-2 btn" >
+                  Filtrar datos</button>
               </div>
             </div>
-            
-          </div>
+
+            <div class="d-grid gap-2 col-6 mx-auto mb-4">
+              <div class="d-grid">
+                <button id="exportarPdf" class="btn btn-light mt-2 btn" >
+                   Generar reporte</button>
+              </div>
+            </div>
+            <hr>
+            <h6 class="mb-2">Graficos</h6>
+            <div class="container link">
+              <a href="./grafico-demo.html"><<<< Grafico - demo >>>></a>
+            </div>
+            <div class="container mb-3 link">
+              <a href="./grafico.update.html"><<<< Grafico - update >>>></a>
+            </div>
+            <hr>
+
+
+             <!-- Tabla -->
+            <div class="container">
+              <div class="col-12">
+                <table class="table table-sm caption-top" id="tabla-hero">
+                  <caption>Lista de datos</caption>
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>Nombre</th>
+                      <th>Color de Cabello</th>
+                      <th>Editor</th>
+                      <th>Peso</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- asincrono -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          
         </div>
-      </div>
-    </div>
-    <!-- Tabla -->
-    <div class="row">
-      <div class="col-md-12">
-        <table class="table table-sm table-striped" id="tabla-hero">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Color de Cabello</th>
-              <th>Editor</th>
-              <th>Peso</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- asincrono -->
-          </tbody>
-        </table>
-      </div>
     </div>
   </div>
+
+
+  
 
   <script>
 
@@ -86,6 +146,7 @@
       const tablaHero = document.querySelector("#tabla-hero");
       const cuerpoTabla = tablaHero.querySelector("tbody"); 
       const btnReportePDF = document.querySelector("#exportarPdf");
+      const btnFiltrar = document.querySelector("#btnFiltrar");
 
 
       //Métodos
@@ -179,6 +240,10 @@
 
             cuerpoTabla.innerHTML += row;
           });
+        })
+        .catch(error =>{
+          cuerpoTabla.innerHTML = ``;
+          alert('No se encontraron datos')
         });
       }
 
@@ -189,7 +254,7 @@
         parametros.append("bando_id", parseInt(lsAlignment.value));
         parametros.append("title", lsRace.options[lsRace.selectedIndex].text);
         parametros.append("title2", lsGender.options[lsGender.selectedIndex].text);
-        parametros.append("title3", lsAlignment.options[lsAlignment.selectedIndex].text);
+        parametros.append("title3", lsAlignment.options[lsAlignment.selectedIndex].text)
         window.open(`../reports/filtrado.report.php?${parametros}`, `_blank`);
       }
       
@@ -199,10 +264,11 @@
       mostrarRace();
       mostrarGender();
       mostrarBando();
-      lsAlignment.addEventListener("change", mostrarFiltrado);
-      lsRace.addEventListener("change", mostrarFiltrado);
-      lsGender.addEventListener("change", mostrarFiltrado);
+      // lsAlignment.addEventListener("change", mostrarFiltrado);
+      // lsRace.addEventListener("change", mostrarFiltrado);
+      // lsGender.addEventListener("change", mostrarFiltrado);
       btnReportePDF.addEventListener("click", generarPdf);
+      btnFiltrar.addEventListener("click", mostrarFiltrado);
   
     }); 
   </script>
